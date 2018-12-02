@@ -1,3 +1,11 @@
+class String_Collector
+    def initialize
+    end
+    def call (*string)
+        puts string
+    end
+end
+
 def graph_strings(in_graph, callback)
     in_graph::nodes.map do |node|
         callback.call(node::letter)

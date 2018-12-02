@@ -2,10 +2,16 @@
 class Node
   attr_accessor :node_id, :letter, :neighbors
 
-  def initialize(node_id, letter)
+  def initialize(node_id, *letter)
     @node_id = node_id
-    @letter = letter
     @neighbors = []
+    if (!letter::nil?)
+      @letter = letter
+    end
+  end
+
+  def set_letter(letter)
+    @letter = letter
   end
 
   def add_neighbor(node_id)
