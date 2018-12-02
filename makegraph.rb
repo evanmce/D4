@@ -11,4 +11,5 @@ def make_graph(arg)
   end
 
   graph.display
+  graph
 end
