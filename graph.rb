@@ -5,13 +5,7 @@ class Node
   def initialize(node_id, *letter)
     @node_id = node_id
     @neighbors = []
-    if (!letter::nil?)
-      @letter = letter
-    end
-  end
-
-  def set_letter(letter)
-    @letter = letter
+    @letter = letter unless letter.nil?
   end
 
   def add_neighbor(node_id)
