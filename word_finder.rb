@@ -1,5 +1,4 @@
 require_relative 'makegraph.rb'
-rew
 
 def validate_args(args)
   args.count == 1
