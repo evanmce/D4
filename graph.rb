@@ -17,9 +17,26 @@ class Graph
     @nodes = []
   end
 
+  def links(neighbors)
+    to_return = ''
+    if neighbors.length > 0
+      neighbors.each_with_index do |neighbor, index|
+        if index != neighbors.size - 1
+          to_return += neighbor.node_id.to_s
+          to_return += ','
+        else
+          to_return += neighbor.node_id.to_s
+        end
+      end
+      to_return
+    else
+      '---'
+    end
+  end
+
   def display
     @nodes.each do |n|
-      puts "Starting from Node #{n.node_id}: #{n.letter} - #{n.neighbors}"
+      puts "Starting from Node #{n.node_id}: #{n.letter} - [ #{links(n.neighbors)} ]..."
     end
   end
 end
