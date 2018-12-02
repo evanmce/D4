@@ -1,6 +1,14 @@
 require_relative 'makegraph.rb'
+
+def validate_args(args)
+  args.count == 1
+rescue StandardError
+  false
+end
+
 def main
-  if File.file?(ARGV[0])
+  valid_args = validate_args ARGV
+  if valid_args && File.file?(ARGV[0])
     make_graph ARGV
   else
     print_usage_statement
@@ -9,7 +17,8 @@ def main
 end
 
 def print_usage_statement
-  puts 
+  puts 'Usage:'
+  puts 'ruby word_finder.rb *graph_file*'
 end
 
 main if $PROGRAM_NAME == __FILE__
