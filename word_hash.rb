@@ -1,5 +1,6 @@
 class Word_Hash
   def initialize(wordlist, isPrefix)
+    @isPrefix = isPrefix
     @hash = Hash::new
     if (isPrefix)
       wordlist.each do |word|
@@ -17,8 +18,9 @@ class Word_Hash
   end
 
   def check(key)
-    if(@hash.has_key? key)
+    if (!@isPrefix)
       puts key
+      puts @hash.has_key? key
     end
     @hash.has_key? key
   end
