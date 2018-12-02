@@ -11,7 +11,11 @@ def main
   valid_args = validate_args ARGV
   if valid_args && File.file?(ARGV[0])
     graph = make_graph ARGV
-    graph_strings(graph, StringCollector.new)
+    prefix_hash = Word_Hash.new(wordlist, true)
+    word_hash = Word_Hash.new(wordlist, false)
+    collector = String_Collector.new
+    graph_strings(graph, collector)
+    find_word(collector.strings, word_hash, prefixHash)
   else
     print_usage_statement
     exit 1
