@@ -1,5 +1,7 @@
 require_relative 'makegraph.rb'
 require_relative 'graph_strings.rb'
+require_relative 'word_hash.rb'
+require_relative 'find_word.rb'
 
 def validate_args(args)
   args.count == 1
@@ -10,12 +12,14 @@ end
 def main
   valid_args = validate_args ARGV
   if valid_args && File.file?(ARGV[0])
+    wordlist = File.open('wordlist.txt', 'r').readlines.map{|line| line.split("\n")[0]}
     graph = make_graph ARGV
     prefix_hash = Word_Hash.new(wordlist, true)
     word_hash = Word_Hash.new(wordlist, false)
-    collector = String_Collector.new
+    collector = StringCollector.new
     graph_strings(graph, collector)
-    find_word(collector.strings, word_hash, prefixHash)
+    words = find_word(collector.strings, word_hash, prefix_hash)
+    words.each{|x| puts x}
   else
     print_usage_statement
     exit 1

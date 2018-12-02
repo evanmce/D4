@@ -6,17 +6,20 @@ class Word_Hash
         concatinator = ""
         word.split("").each do |char|
           concatinator = concatinator + char
-          hash[concatinator] = true
+          @hash.store(concatinator, 1)
         end
       end
     else
       wordlist.each do |word|
-        hash[word] = true
+        @hash.store(word, 1)
       end
     end
   end
 
   def check(key)
+    if(@hash.has_key? key)
+      puts key
+    end
     @hash.has_key? key
   end
 end

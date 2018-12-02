@@ -7,7 +7,7 @@ class StringCollector
   end
 
   def call(*string)
-    strings << []
+    strings << string[0].downcase
     puts string
   end
 end
