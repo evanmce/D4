@@ -2,11 +2,12 @@ require_relative 'graph.rb'
 
 def make_graph(arg)
   graph = Graph.new
-  size = `wc -l #{arg[0]}`.to_i
+  file=File.open(arg[0],"r").readlines
+  size = file.count
   (1..size).each do |name|
     graph.nodes << Node.new(name)
   end
-  File.open(arg[0], 'r').each do |line|
+  file.each do |line|
     number, char = /(?<number>\d{1});(?<char>\w{1});/.match(line).captures
     graph.nodes[number.to_i - 1].set_letter(char)
     line = line.sub(/(?<number>\d{1});(?<char>\w{1});/, '')
