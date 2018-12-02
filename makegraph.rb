@@ -2,7 +2,7 @@ require_relative 'graph.rb'
 
 def make_graph(arg)
   graph = Graph.new
-  file=File.open(arg[0],"r").readlines
+  file = File.open(arg[0],"r").readlines
   size = file.count
   (1..size).each do |name|
     graph.nodes << Node.new(name)
