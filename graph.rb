@@ -7,10 +7,6 @@ class Node
     @neighbors = []
     @letter = letter unless letter.nil?
   end
-
-  def add_neighbor(node_id)
-    @neighbors << node_id
-  end
 end
 
 # Graph object
