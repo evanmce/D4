@@ -11,7 +11,7 @@ def main
   valid_args = validate_args ARGV
   if valid_args && File.file?(ARGV[0])
     graph = make_graph ARGV
-    graph_strings(graph, String_Collector.new)
+    graph_strings(graph, StringCollector.new)
   else
     print_usage_statement
     exit 1
