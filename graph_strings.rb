@@ -1,7 +1,12 @@
 class String_Collector
+    attr_accessor :strings
+
     def initialize
+        @strings = []
     end
+    
     def call (*string)
+        strings << []
         puts string
     end
 end
