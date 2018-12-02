@@ -1,16 +1,19 @@
+# Nodes for the graph
 class Node
-  attr_accessor :char, :neighbors
+  attr_accessor :node_id, :letter, :neighbors
 
-  def initialize(char)
-    @char = char
+  def initialize(node_id, letter)
+    @node_id = node_id
+    @letter = letter
     @neighbors = []
   end
 
-  def add_neighbor(num)
-    @neighbors << num
+  def add_neighbor(node_id)
+    @neighbors << node_id
   end
 end
 
+# Graph object
 class Graph
   attr_accessor :nodes
 
@@ -18,18 +21,24 @@ class Graph
     @nodes = []
   end
 
-  def add_nodes(char)
-    @nodes << Node.new(char)
+  def add_nodes(letter)
+    @nodes << Node.new(node_id, letter)
   end
 
-  def find_node_by_char(char)
+  def find_node_by_letter(letter)
     nodes.each do |n|
-      return n if n.char == char
+      return n if n.letter == letter
     end
     nil
   end
 
   def count
     nodes.length
+  end
+
+  def display
+    @nodes.each do |n|
+      puts "Starting from Node #{n.node_id}: #{n.letter} - [ --- ]"
+    end
   end
 end
