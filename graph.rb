@@ -21,21 +21,6 @@ class Graph
     @nodes = []
   end
 
-  def add_nodes(letter)
-    @nodes << Node.new(node_id, letter)
-  end
-
-  def find_node_by_letter(letter)
-    nodes.each do |n|
-      return n if n.letter == letter
-    end
-    nil
-  end
-
-  def count
-    nodes.length
-  end
-
   def display
     @nodes.each do |n|
       puts "Starting from Node #{n.node_id}: #{n.letter} - #{n.neighbors}"
