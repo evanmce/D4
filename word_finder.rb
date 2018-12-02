@@ -18,7 +18,6 @@ def main
   end
 end
 
-
 def print_usage_statement
   puts 'Usage:'
   puts 'ruby word_finder.rb *graph_file*'
