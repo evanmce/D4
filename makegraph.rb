@@ -8,11 +8,11 @@ def make_graph(arg)
     graph.nodes << Node.new(name)
   end
   file.each do |line|
-    number, char = /(?<number>\d{1});(?<char>\w{1});/.match(line).captures
+    number, char = /(?<number>\d+);(?<char>\w{1});/.match(line).captures
     graph.nodes[number.to_i - 1].letter = char
-    line = line.sub(/(?<number>\d{1});(?<char>\w{1});/, '')
+    line = line.sub(/(?<number>\d+);(?<char>\w{1});/, '')
     nums = []
-    nums << line.scan(/(\d),*/)
+    nums << line.scan(/(\d+),*/)
     nums.each do |neighbors|
       neighbors.each do |neighbor|
         graph.nodes[number.to_i - 1].neighbors << graph.nodes[neighbor[0].to_i - 1]
