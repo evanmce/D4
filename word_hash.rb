@@ -12,12 +12,21 @@ class Word_Hash
       end
     else
       wordlist.each do |word|
-        @hash.store(word, 1)
+        alpha = word.chars.sort.join
+        if(@hash.has_key? alpha)
+          @hash[alpha] << word
+        else
+          @hash.store(alpha, [word])
+        end
       end
     end
   end
 
   def check(key)
     @hash.has_key? key
+  end
+
+  def get(key)
+    @hash[key]
   end
 end
