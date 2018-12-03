@@ -19,7 +19,10 @@ def main
     collector = StringCollector.new
     graph_strings(graph, collector)
     words = find_word(collector.strings, word_hash, prefix_hash)
-    words.each{|x| puts x}
+    words = words.sort_by(&:length)
+    len = words[-1].length
+    words = words.select{|a| a.length >= len}
+    puts words
   else
     print_usage_statement
     exit 1

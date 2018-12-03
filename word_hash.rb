@@ -18,10 +18,6 @@ class Word_Hash
   end
 
   def check(key)
-    if (!@isPrefix)
-      puts key
-      puts @hash.has_key? key
-    end
     @hash.has_key? key
   end
 end

@@ -1,15 +1,29 @@
 def find_word(prefixes, word_hash, prefix_hash)
-  puts prefixes.count
-  tries = prefixes.select{ |prefix| prefix_hash.check prefix}
+  tries = prefixes.select{ |prefix| prefix_hash.check(nodes_to_string(prefix))}
   words = []
-  while (tries != []) do
-    puts tries.count
-    tries = tries.map do |prefix|
-      prefixes.select{ |next_string| prefix_hash.check(prefix + next_string) }.map{ |next_string| prefix + next_string}
+  puts tries.count
+  while (tries != [])
+    nextTries = []
+    tries.each do |try|
+      used_ids = try.map{|n| n::node_id}
+      valid_paths = prefixes.select do |prefix|
+        prefix.map{|p| !used_ids.include?(p::node_id)}.reduce(&:&) && prefix_hash.check(nodes_to_string(try.clone().push(*prefix)))
+      end
+      valid_paths.each do |path|
+        nextTries << try.clone().push(*path)
+      end
     end
-    tries = tries.flatten
-    words << tries.select{ |x| word_hash.check(x)}
-    words = words.flatten
+
+    tries = nextTries
+    tries.each do |try|
+      if word_hash.check(nodes_to_string(try))
+        words << nodes_to_string(try)
+      end
+    end
   end
   words
+end
+
+def nodes_to_string(nodes)
+  nodes.map{ |n| n::letter }.map{|n| n::downcase}.reduce{ |a, b| a + b }
 end
