@@ -1,4 +1,6 @@
 require 'benchmark'
+require 'flamegraph'
+require 'yaml'
 require_relative 'makegraph.rb'
 require_relative 'graph_strings.rb'
 require_relative 'word_hash.rb'
@@ -13,9 +15,6 @@ Benchmark.bm(15) do |bm|
         collector = StringCollector.new
         graph_strings(graph, collector)
         words = find_word(collector.strings, word_hash)
-        words = words.sort_by(&:length)
-        len = words[-1].length
-        words = words.select{|a| a.length >= len}
     end
     puts words
     bm.report("big:") do
@@ -25,9 +24,6 @@ Benchmark.bm(15) do |bm|
         collector = StringCollector.new
         graph_strings(graph, collector)
         words = find_word(collector.strings, word_hash)
-        words = words.sort_by(&:length)
-        len = words[-1].length
-        words = words.select{|a| a.length >= len}
     end
     puts words
     bm.report("medium:") do
@@ -37,9 +33,6 @@ Benchmark.bm(15) do |bm|
         collector = StringCollector.new
         graph_strings(graph, collector)
         words = find_word(collector.strings, word_hash)
-        words = words.sort_by(&:length)
-        len = words[-1].length
-        words = words.select{|a| a.length >= len}
     end
     puts words
     bm.report("small:") do
@@ -49,9 +42,17 @@ Benchmark.bm(15) do |bm|
         collector = StringCollector.new
         graph_strings(graph, collector)
         words = find_word(collector.strings, word_hash)
-        words = words.sort_by(&:length)
-        len = words[-1].length
-        words = words.select{|a| a.length >= len}
     end
+    puts words
+end
+
+Flamegraph.generate('full_run.html') do
+    wordlist = File.open('wordlist.txt', 'r').readlines.map{|line| line.split("\n")[0]}
+    graph = make_graph ["small_graph.txt"]
+    graph.display
+    word_hash = Word_Hash.new(wordlist)
+    collector = StringCollector.new
+    graph_strings(graph, collector)
+    words = find_word(collector.strings, word_hash)
     puts words
 end

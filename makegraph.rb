@@ -9,7 +9,6 @@ def make_graph(arg)
   end
   file.each do |line|
     number, char = /(?<number>\d+);(?<char>\w{1});/.match(line).captures
-    puts char.class
     graph.nodes[number.to_i - 1].letter = char
     line = line.sub(/(?<number>\d+);(?<char>\w{1});/, '')
     nums = []

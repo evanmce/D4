@@ -16,9 +16,8 @@ Benchmark.bm(15) do |benchmark|
         wordlist = File.open("wordlist.txt", "r").readlines
     end
 
-    benchmark.report("Prefix Word Hash") do
-        prefix_hash = Word_Hash.new(wordlist, true)
-        word_hash = Word_Hash.new(wordlist, false)
+    benchmark.report("Word Hash") do
+        word_hash = Word_Hash.new(wordlist)
     end
 
     collector = StringCollector.new
@@ -29,10 +28,13 @@ Benchmark.bm(15) do |benchmark|
 
     benchmark.report("Graph Strings") do
         graph_strings(graph, collector)
+        strings = collector.strings
     end
 
+    strings = strings.select{|x| !x.nil?}
+
     benchmark.report("Find Word") do
-        words = find_word(collector.strings, word_hash, prefix_hash)
+        words = find_word(strings, word_hash)
         puts words
     end
 

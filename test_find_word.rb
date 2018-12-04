@@ -21,9 +21,6 @@ class TestFindWord < Minitest::Test
     end
 
     def test_nodes_to_string
-        graph = Graph.new
-        graph.nodes << [Node.new(0, 'T'),Node.new(1, 'E'),Node.new(2, 'S'),Node.new(3, 'T')]
-        graph.nodes = graph.nodes.flatten
-        assert_equal 'test', nodes_to_string(graph.nodes)
+        assert_equal 'test', nodes_to_string([Node.new(0, 'T'),Node.new(1, 'E'),Node.new(2, 'S'),Node.new(3, 'T')])
     end
 end
