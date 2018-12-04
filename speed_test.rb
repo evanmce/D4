@@ -1,4 +1,5 @@
 require 'flamegraph'
+require 'benchmark'
 require_relative 'makegraph.rb'
 require_relative 'graph_strings.rb'
 require_relative 'find_word.rb'
