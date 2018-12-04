@@ -7,6 +7,7 @@ class Word_Hash
         concatinator = ""
         word.split("").each do |char|
           concatinator = concatinator + char
+          concatinator = concatinator.chars.sort.join
           @hash.store(concatinator, 1)
         end
       end
