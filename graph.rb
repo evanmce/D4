@@ -36,7 +36,7 @@ class Graph
 
   def display
     @nodes.each do |n|
-      puts "Starting from Node #{n.node_id}: #{n.letter} - [ #{links(n.neighbors)} ]..."
+      puts "Starting from Node #{n.node_id}: #{n.letter} - [ #{links(n.neighbors)} ]"
     end
   end
 end
