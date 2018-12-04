@@ -5,7 +5,7 @@ class TestGraph < Minitest::Test
   def test_init_node_has_specified_values
     test_node = Node.new(1, 'A')
     assert_equal test_node.node_id, 1
-    assert_equal test_node.letter, ['A']
+    assert_equal test_node.letter, 'A'
   end
 
   def test_neighbors_links_nodes

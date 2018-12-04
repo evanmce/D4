@@ -1,11 +1,10 @@
 # Nodes for the graph
 class Node
   attr_accessor :node_id, :letter, :neighbors
-
   def initialize(node_id, *letter)
     @node_id = node_id
     @neighbors = []
-    @letter = letter unless letter.nil?
+    @letter = letter[0] unless letter.nil?
   end
 end
 
