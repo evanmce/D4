@@ -14,12 +14,11 @@ def make_graph(arg)
     nums = []
     nums << line.scan(/(\d+),*/)
     nums.each do |neighbors|
+      neighbors.select{|x| x[0].to_i < size}
       neighbors.each do |neighbor|
         graph.nodes[number.to_i - 1].neighbors << graph.nodes[neighbor[0].to_i - 1]
       end
     end
   end
-
-  graph.display
   graph
 end

@@ -14,8 +14,8 @@ def main
   if valid_args && File.file?(ARGV[0])
     wordlist = File.open('wordlist.txt', 'r').readlines.map{|line| line.split("\n")[0]}
     graph = make_graph ARGV
-    prefix_hash = Word_Hash.new(wordlist, true)
-    word_hash = Word_Hash.new(wordlist, false)
+    graph.display
+    word_hash = Word_Hash.new(wordlist)
     collector = StringCollector.new
     graph_strings(graph, collector)
     puts collector.strings
