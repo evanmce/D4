@@ -19,7 +19,5 @@ def make_graph(arg)
       end
     end
   end
-
-  graph.display
   graph
 end
