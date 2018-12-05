@@ -34,3 +34,4 @@ end
 Flamegraph.generate('solve_small_graph.html') do
     words = find_word(collector.strings, word_hash, prefix_hash)
 end
+
