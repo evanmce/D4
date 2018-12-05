@@ -17,8 +17,8 @@ Flamegraph.generate('load_wordlist.html') do
 end
 
 Flamegraph.generate('genarate_word_hash.html') do
-    prefix_hash = Word_Hash.new(wordlist, true)
-    word_hash = Word_Hash.new(wordlist, false)
+    prefix_hash = WordHash.new(wordlist, true)
+    word_hash = WordHash.new(wordlist, false)
 end
 
 collector = StringCollector.new

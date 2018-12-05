@@ -7,7 +7,7 @@ require_relative 'graph.rb'
 class TestFindWord < Minitest::Test
     def setup
         @wordlist = File.open('wordlist.txt', 'r').readlines.map{|line| line.split("\n")[0]}
-        @wordhash = Word_Hash.new(@wordlist)
+        @wordhash = WordHash.new(@wordlist)
     end
 
     def test_finds_longest
@@ -17,7 +17,9 @@ class TestFindWord < Minitest::Test
 
     def test_finds_multiple
         words = find_word(['graph', 'wrong', 'left'], @wordhash)
-        assert_equal ['graph', 'grown', 'wrong'], words
+        assert_includes words, 'graph'
+        assert_includes words, 'wrong'
+        assert_includes words, 'grown'
     end
 
     def test_nodes_to_string

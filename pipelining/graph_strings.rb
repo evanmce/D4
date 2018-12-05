@@ -18,8 +18,11 @@ class WordCollector
   end
 
   def done
-    @input.close
-    words = @output.size.times.map { @output.pop }.flatten.sort_by(&:length)
+    @input << nil
+    words = []
+    while word = output.pop
+      words << word
+    end
     len = words[-1].length
     @strings = words.select{|x| x.length >= len}
   end

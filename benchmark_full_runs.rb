@@ -11,7 +11,7 @@ Benchmark.bm(15) do |bm|
     bm.report("ultra big:") do
         wordlist = File.open('wordlist.txt', 'r').readlines.map{|line| line.split("\n")[0]}
         graph = make_graph ["ultra_big_graph.txt"]
-        word_hash = Word_Hash.new(wordlist)
+        word_hash = WordHash.new(wordlist)
         collector = StringCollector.new
         graph_strings(graph, collector)
         words = find_word(collector.strings, word_hash)
@@ -20,7 +20,7 @@ Benchmark.bm(15) do |bm|
     bm.report("big:") do
         wordlist = File.open('wordlist.txt', 'r').readlines.map{|line| line.split("\n")[0]}
         graph = make_graph ["big_graph.txt"]
-        word_hash = Word_Hash.new(wordlist)
+        word_hash = WordHash.new(wordlist)
         collector = StringCollector.new
         graph_strings(graph, collector)
         words = find_word(collector.strings, word_hash)
@@ -29,7 +29,7 @@ Benchmark.bm(15) do |bm|
     bm.report("medium:") do
         wordlist = File.open('wordlist.txt', 'r').readlines.map{|line| line.split("\n")[0]}
         graph = make_graph ["medium_size_graph.txt"]
-        word_hash = Word_Hash.new(wordlist)
+        word_hash = WordHash.new(wordlist)
         collector = StringCollector.new
         graph_strings(graph, collector)
         words = find_word(collector.strings, word_hash)
@@ -38,7 +38,7 @@ Benchmark.bm(15) do |bm|
     bm.report("small:") do
         wordlist = File.open('wordlist.txt', 'r').readlines.map{|line| line.split("\n")[0]}
         graph = make_graph ["small_graph.txt"]
-        word_hash = Word_Hash.new(wordlist)
+        word_hash = WordHash.new(wordlist)
         collector = StringCollector.new
         graph_strings(graph, collector)
         words = find_word(collector.strings, word_hash)
@@ -58,8 +58,7 @@ end
 Flamegraph.generate('full_run.html') do
     wordlist = File.open('wordlist.txt', 'r').readlines.map{|line| line.split("\n")[0]}
     graph = make_graph ["small_graph.txt"]
-    graph.display
-    word_hash = Word_Hash.new(wordlist)
+    word_hash = WordHash.new(wordlist)
     collector = StringCollector.new
     graph_strings(graph, collector)
     words = find_word(collector.strings, word_hash)

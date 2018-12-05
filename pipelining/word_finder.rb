@@ -15,8 +15,7 @@ def main
     wordlist = File.open('wordlist.txt', 'r').readlines.map{|line| line.split("\n")[0]}
     graph = make_graph ARGV
     graph.display
-    word_hash = Word_Hash.new(wordlist)
-    collector = StringCollector.new
+    collector = WordCollector.new(wordlist)
     graph_strings(graph, collector)
     words = find_word(collector.strings, word_hash)
     puts words

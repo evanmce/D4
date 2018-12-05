@@ -6,8 +6,8 @@ class StringCollector
     @strings = []
   end
 
-  def call(*nodeHistory)
-    strings << nodeHistory[0]
+  def call(*node_history)
+    strings << node_history[0]
   end
 end
 
