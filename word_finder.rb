@@ -12,17 +12,15 @@ end
 def main
   valid_args = validate_args ARGV
   if valid_args && File.file?(ARGV[0])
-    wordlist = File.open('wordlist.txt', 'r').readlines.map{|line| line.split("\n")[0]}
+    wordlist = File.open('wordlist.txt', 'r').readlines.map { |line| line.split("\n")[0] }
     graph = make_graph ARGV
-    graph.display
-    word_hash = Word_Hash.new(wordlist)
+    word_hash = WordHash.new(wordlist)
     collector = StringCollector.new
     graph_strings(graph, collector)
-    puts collector.strings
     words = find_word(collector.strings, word_hash)
     words = words.sort_by(&:length)
     len = words[-1].length
-    words = words.select{|a| a.length >= len}
+    words = words.select { |a| a.length >= len }
     puts words
   else
     print_usage_statement

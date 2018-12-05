@@ -17,7 +17,7 @@ Benchmark.bm(15) do |benchmark|
     end
 
     benchmark.report("Word Hash") do
-        word_hash = Word_Hash.new(wordlist)
+        word_hash = WordHash.new(wordlist)
     end
 
     collector = StringCollector.new

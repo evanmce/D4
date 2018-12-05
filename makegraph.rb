@@ -14,7 +14,7 @@ def make_graph(arg)
     nums = []
     nums << line.scan(/(\d+),*/)
     nums.each do |neighbors|
-      filtered = neighbors.select{|x| x[0].to_i < size}
+      filtered = neighbors.select { |x| x[0].to_i < size }
       filtered.each do |neighbor|
         graph.nodes[number.to_i - 1].neighbors << graph.nodes[neighbor[0].to_i - 1]
       end
