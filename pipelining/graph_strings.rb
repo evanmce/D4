@@ -20,9 +20,11 @@ class WordCollector
   def done
     @input << nil
     words = []
-    while word = output.pop
+    while word = @output.pop
+      break if word.nil?
       words << word
     end
+    words = words.flatten.sort_by{|x| x.length}
     len = words[-1].length
     @strings = words.select{|x| x.length >= len}
   end
@@ -33,7 +35,6 @@ def graph_strings(in_graph, callback)
     callback.call(node.letter)
     breath_first_search(node, node.letter, callback)
   end
-  callback.done
 end
 
 def breath_first_search(node, prefix, callback)

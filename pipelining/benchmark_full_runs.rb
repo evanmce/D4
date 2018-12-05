@@ -13,6 +13,7 @@ Benchmark.bm(15) do |bm|
         graph = make_graph ["ultra_big_graph.txt"]
         collector = WordCollector.new(wordlist)
         graph_strings(graph, collector)
+        collector.done
         words = collector.strings
     end
     puts words
@@ -21,6 +22,7 @@ Benchmark.bm(15) do |bm|
         graph = make_graph ["big_graph.txt"]
         collector = WordCollector.new(wordlist)
         graph_strings(graph, collector)
+        collector.done
         words = collector.strings
     end
     puts words
@@ -29,6 +31,7 @@ Benchmark.bm(15) do |bm|
         graph = make_graph ["medium_size_graph.txt"]
         collector = WordCollector.new(wordlist)
         graph_strings(graph, collector)
+        collector.done
         words = collector.strings
     end
     puts words
@@ -37,6 +40,7 @@ Benchmark.bm(15) do |bm|
         graph = make_graph ["small_graph.txt"]
         collector = WordCollector.new(wordlist)
         graph_strings(graph, collector)
+        collector.done
         words = collector.strings
     end
     puts words
@@ -45,6 +49,7 @@ Benchmark.bm(15) do |bm|
         graph = make_graph ["pretty_ultra_big_graph.txt"]
         collector = WordCollector.new(wordlist)
         graph_strings(graph, collector)
+        collector.done
         words = collector.strings
     end
     puts words
@@ -56,6 +61,7 @@ Flamegraph.generate('full_run.html') do
     graph.display
     collector = WordCollector.new(wordlist)
     graph_strings(graph, collector)
+    collector.done
     words = collector.strings
     puts words
 end

@@ -17,7 +17,8 @@ def main
     graph.display
     collector = WordCollector.new(wordlist)
     graph_strings(graph, collector)
-    words = find_word(collector.strings, word_hash)
+    collector.done
+    words = collector.strings
     puts words
   else
     print_usage_statement
