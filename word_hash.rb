@@ -1,10 +1,9 @@
-# Make the word_hash from wordlist.txt
-class WordHash
+class Word_Hash
   def initialize(wordlist)
-    @hash = {}
+    @hash = Hash::new
     wordlist.each do |word|
       alpha = word.chars.sort.join
-      if @hash.key? alpha
+      if(@hash.has_key? alpha)
         @hash[alpha] << word
       else
         @hash.store(alpha, [word])
@@ -13,7 +12,7 @@ class WordHash
   end
 
   def check(key)
-    @hash.key? key
+    @hash.has_key? key
   end
 
   def get(key)

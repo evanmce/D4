@@ -7,22 +7,33 @@ require_relative 'graph.rb'
 class TestFindWord < Minitest::Test
     def setup
         @wordlist = File.open('wordlist.txt', 'r').readlines.map{|line| line.split("\n")[0]}
-        @wordhash = WordHash.new(@wordlist)
+        @wordhash = Word_Hash.new(@wordlist)
     end
 
-    def test_finds_longest
-        words = find_word(['cake', 'l', 'b', 'xvc'], @wordhash)
-        assert_equal ['cake'], words
+    def test_finds_correct_string
+        input = Queue.new
+        output = Queue.new
+        test_thread = find_word_thread(@wordhash, input, output)
+        input << 'akec'
+        result = output.pop
+        assert_equal ['cake'], result
     end
 
     def test_finds_multiple
-        words = find_word(['graph', 'wrong', 'left'], @wordhash)
-        assert_includes words, 'graph'
-        assert_includes words, 'wrong'
-        assert_includes words, 'grown'
+        input = Queue.new
+        output = Queue.new
+        test_thread = find_word_thread(@wordhash, input, output)
+        input << 'wrong'
+        result = output.pop
+        assert_includes result, 'wrong'
+        assert_includes result, 'grown'
     end
 
-    def test_nodes_to_string
-        assert_equal 'test', nodes_to_string([Node.new(0, 'T'),Node.new(1, 'E'),Node.new(2, 'S'),Node.new(3, 'T')])
+    def test_finds_none
+        input = Queue.new
+        output = Queue.new
+        test_thread = find_word_thread(@wordhash, input, output)
+        input << 'zzzxxxc'
+        assert_equal output.empty?, true
     end
 end

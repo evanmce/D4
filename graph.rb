@@ -18,10 +18,14 @@ class Graph
 
   def links(neighbors)
     to_return = ''
-    if !neighbors.empty?
+    if neighbors.length > 0
       neighbors.each_with_index do |neighbor, index|
-        to_return += neighbor.node_id.to_s
-        to_return += ',' unless index == neighbors.size - 1
+        if index != neighbors.size - 1
+          to_return += neighbor.node_id.to_s
+          to_return += ','
+        else
+          to_return += neighbor.node_id.to_s
+        end
       end
       to_return
     else

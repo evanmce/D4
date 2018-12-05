@@ -17,11 +17,10 @@ Flamegraph.generate('load_wordlist.html') do
 end
 
 Flamegraph.generate('genarate_word_hash.html') do
-    prefix_hash = WordHash.new(wordlist, true)
-    word_hash = WordHash.new(wordlist, false)
+    word_hash = Word_Hash.new(wordlist)
 end
 
-collector = StringCollector.new
+collector = WordCollector.new(wordlist)
 
 Flamegraph.generate('make_small_graph.html') do
     graph = make_graph(['small_graph.txt'])
@@ -32,6 +31,7 @@ Flamegraph.generate('strings_small_graph.html') do
 end
 
 Flamegraph.generate('solve_small_graph.html') do
-    words = find_word(collector.strings, word_hash, prefix_hash)
+    collector.done
+    words = collector.strings
 end
 

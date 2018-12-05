@@ -1,13 +1,32 @@
+require_relative 'find_word.rb'
+require_relative 'word_hash.rb'
+
 # Get them strings
-class StringCollector
+class WordCollector
   attr_accessor :strings
 
-  def initialize
+  def initialize(wordlist)
+    @word_hash = Word_Hash.new(wordlist)
+    @input = Queue.new
+    @output = Queue.new
+    @find_word_thread = find_word_thread(@word_hash, @input, @output)
     @strings = []
   end
 
-  def call(*node_history)
-    strings << node_history[0]
+  def call(*nodeHistory)
+    @input << nodeHistory[0]
+  end
+
+  def done
+    @input << nil
+    words = []
+    while word = @output.pop
+      break if word.nil?
+      words << word
+    end
+    words = words.flatten.sort_by{|x| x.length}
+    len = words[-1].length
+    @strings = words.select{|x| x.length >= len}
   end
 end
 
